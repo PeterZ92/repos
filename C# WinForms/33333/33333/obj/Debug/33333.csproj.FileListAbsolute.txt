@@ -1,0 +1,20 @@
+H:\33333\33333\bin\Debug\33333.exe.config
+H:\33333\33333\bin\Debug\33333.exe
+H:\33333\33333\bin\Debug\33333.pdb
+H:\33333\33333\obj\Debug\33333.csprojAssemblyReference.cache
+H:\33333\33333\obj\Debug\_33333.Form1.resources
+H:\33333\33333\obj\Debug\_33333.Properties.Resources.resources
+H:\33333\33333\obj\Debug\33333.csproj.GenerateResource.cache
+H:\33333\33333\obj\Debug\33333.csproj.CoreCompileInputs.cache
+H:\33333\33333\obj\Debug\33333.exe
+H:\33333\33333\obj\Debug\33333.pdb
+F:\2 КУРС\33333\33333\obj\Debug\33333.csproj.AssemblyReference.cache
+F:\2 КУРС\33333\33333\obj\Debug\_33333.Form1.resources
+F:\2 КУРС\33333\33333\obj\Debug\_33333.Properties.Resources.resources
+F:\2 КУРС\33333\33333\obj\Debug\33333.csproj.GenerateResource.cache
+F:\2 КУРС\33333\33333\obj\Debug\33333.csproj.CoreCompileInputs.cache
+F:\2 КУРС\33333\33333\obj\Debug\33333.exe
+F:\2 КУРС\33333\33333\obj\Debug\33333.pdb
+F:\2 КУРС\33333\33333\bin\Debug\33333.exe.config
+F:\2 КУРС\33333\33333\bin\Debug\33333.exe
+F:\2 КУРС\33333\33333\bin\Debug\33333.pdb

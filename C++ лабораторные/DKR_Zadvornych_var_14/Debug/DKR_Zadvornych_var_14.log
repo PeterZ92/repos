@@ -1,0 +1,3 @@
+﻿  DKR_Zadvornych_var_14.cpp
+C:\Users\ВТ\Desktop\2 kurs\DKR_Zadvornych_var_14\DKR_Zadvornych_var_14.cpp(96,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  DKR_Zadvornych_var_14.vcxproj -> C:\Users\ВТ\Desktop\2 kurs\DKR_Zadvornych_var_14\Debug\DKR_Zadvornych_var_14.exe

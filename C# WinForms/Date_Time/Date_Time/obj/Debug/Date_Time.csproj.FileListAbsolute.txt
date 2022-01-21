@@ -1,0 +1,10 @@
+H:\Date_Time\Date_Time\bin\Debug\Date_Time.exe.config
+H:\Date_Time\Date_Time\bin\Debug\Date_Time.exe
+H:\Date_Time\Date_Time\bin\Debug\Date_Time.pdb
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.csprojAssemblyReference.cache
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.Form1.resources
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.Properties.Resources.resources
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.csproj.GenerateResource.cache
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.csproj.CoreCompileInputs.cache
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.exe
+H:\Date_Time\Date_Time\obj\Debug\Date_Time.pdb

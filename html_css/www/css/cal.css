@@ -1,0 +1,54 @@
+
+.space{
+z-index: -1;
+}
+.space p {
+	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	position: absolute;
+	background-color: rgba(189,226,218,0.2);
+	background-color: rgb(189,226,218,0.2);/* прозрачность для IE 8*/
+	display: flex;
+	justify-content: space-between;
+	z-index: -1;
+	}
+	
+.media p{
+color: white;
+	position: relative;
+	font-family: Verdana;
+	font-size: 30px;	
+	position: fixed;
+	text-transform:capitalize;
+	padding-top:15px;
+	padding-left:30%;			
+}
+ video{
+
+padding-left: 35%;
+padding-top: 80px;
+z-index: 5;
+}
+.media video{
+z-index: 5;
+}
+.music {
+	position: relative;
+	margin-top:40px;
+	margin-left:32%;	
+}
+
+.music {
+color: white;
+	position: relative;
+	font-family: Verdana;
+	font-size: 30px;	
+	position: fixed;	
+	text-transform:capitalize;
+}
+.music audio{
+margin-left:27%;
+margin-top:15px;}
+	
+

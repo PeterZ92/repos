@@ -1,0 +1,50 @@
+/* полупрозрачный фон*/
+.space p {
+	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	position: absolute;
+	background-color: rgba(189,226,218,0.2);
+	background-color: rgb(189,226,218,0.2);/* прозрачность для IE 8*/
+	display: flex;
+	justify-content: space-between;
+	}
+/* полупрозрачный фон конец*/	
+.tab{
+    color: white;
+	position: relative;
+	font-family: Verdana;
+	display: flex;
+	justify-content: space-between;	
+	text-align: center;
+	
+}
+.tab th{
+     border: 1px solid rgba(189,226,218,0.7);	
+     vertical-align: middle;	
+}
+.tab tr{
+    border: 1px solid rgba(189,226,218,0.7);	
+    vertical-align: middle;	
+}
+.tab td{
+    border: 1px solid rgba(189,226,218,0.7);	
+    vertical-align: middle;	
+}
+.tab table{
+    width: 80%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border: 2px solid rgba(189,226,218,0.7);
+    font-size: 30px;
+    vertical-align: middle;	
+    margin: 15px auto;
+}
+.tab caption{
+	margin-bottom: 15px;
+	font-weight: bolder;
+
+}	
+	
+
+
