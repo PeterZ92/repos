@@ -1,7 +1,7 @@
 import pygame
 import random
 from os import path
-from setings import *
+from setings import*
 
 
 # класс игорок
@@ -106,8 +106,9 @@ class Bullet(pygame.sprite.Sprite):
 class Bullet_rocet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = bullet_img
-        self.image.set_colorkey(WHITE)
+        self.image_orig = random.choice(bullet_images)
+        self.image_orig.set_colorkey(WHITE)
+        self.image= self.image_orig.copy()
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x

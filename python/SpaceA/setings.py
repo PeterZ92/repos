@@ -23,6 +23,13 @@ background = pygame.image.load(path.join(img_dir, "locationP.png"))
 background_rect = background.get_rect()
 player_img = pygame.image.load(path.join(img_dir, "sship2.png"))
 meteor_img = pygame.image.load(path.join(img_dir, "asteroid.bmp"))#при png не правильная работа анимации
-bullet_img = pygame.image.load(path.join(img_dir, "bullet.png"))
+#bullet_img = pygame.image.load(path.join(img_dir, "bullet.png"))#обычные патроны
 rocket_img = pygame.image.load(path.join(img_dir, "rokcets.png"))
 stars_img = pygame.image.load(path.join(img_dir, "stars_e.png"))
+
+#цветные патроны
+bullet_images = []
+bullet_list=['b_gr.bmp','b_or.bmp','b_red.bmp','b_vio.bmp','bullet.bmp']
+for  img in bullet_list:
+    bullet_images.append(pygame.image.load(path.join(img_dir, img)))
+
