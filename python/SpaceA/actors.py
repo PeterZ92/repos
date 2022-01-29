@@ -1,3 +1,4 @@
+#actors.py файл с классами игровых объектов
 import pygame
 import random
 from os import path
@@ -14,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.radius=25#AABB радиус для корабля
         #pygame.draw.circle(self.image,RED,self.rect.center,self.radius)# визуализация ААВВ игрока(граница взаимодействия)
         self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
+        self.rect.bottom = HEIGHT - 60
         self.speedx = 0
 
 # функция обновления и перемещения по оси Х

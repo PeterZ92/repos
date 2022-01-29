@@ -1,3 +1,4 @@
+# setings.py (файл с настройками)
 import pygame
 import random
 from os import path
@@ -15,8 +16,18 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 120, 255) #(0,0,255)
-YELLOW = (255, 255, 70) #(255,255,0)
+BLUE = (5, 5, 80) #(0,0,255)
+YELLOW = (240, 240, 30) #(255,255,0)
+
+# функция посчета очков
+font_name=pygame.font.match_font('arial')
+def show_text(surf,text,size,x,y):
+    font=pygame.font.Font(font_name,size)
+    text_surface=font.render(text,True,BLUE)
+    text_rect=text_surface.get_rect()
+    text_rect.midtop=(x,y)
+    surf.blit(text_surface,text_rect)
+
 
 # Загрузка изображений
 background = pygame.image.load(path.join(img_dir, "locationP.png"))

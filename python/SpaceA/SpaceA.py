@@ -1,4 +1,5 @@
 # Космическая одиссея "SpaceA" автор З.П.А. гр.22928/1
+# файл SpaceA.py основной файл
 import pygame
 import random
 from os import path
@@ -28,7 +29,8 @@ for i in range(23):
     s =Star()
     all_sprites.add(s)
     stars.add(s)
-
+# score  переменная для посчета очков
+score = 0;
 # Цикл игры
 running = True
 while running:
@@ -49,6 +51,7 @@ while running:
     # группа для взаимодействия с кораблем
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
     for hit in hits:
+        score += 10 # + 10 очков за каждый астероид
         m = Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -62,6 +65,7 @@ while running:
     screen.fill(BLACK)
     screen.blit(background, background_rect)
     all_sprites.draw(screen)
+    show_text(screen,str(score),25,WIDTH/2,670)
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 
