@@ -12,14 +12,22 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(player_img, (50, 50))
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
-        self.radius=25#AABB радиус для корабля
+        self.radius=25 #AABB радиус для корабля
         #pygame.draw.circle(self.image,RED,self.rect.center,self.radius)# визуализация ААВВ игрока(граница взаимодействия)
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 60
         self.speedx = 0
+        self.shell=100 #броня
+        self.hp=100 #здоровечко
+        self.power = 1
+        self.power_time = pygame.time.get_ticks()
 
 # функция обновления и перемещения по оси Х
     def update(self):
+        if self.power >= 2 and pygame.time.get_ticks() - self.power_time > UP_GUN:
+            self.power -= 1
+            self.power_time = pygame.time.get_ticks()
+
         self.speedx = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
@@ -31,17 +39,27 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0
+
+#для бонуса оружия
+    def powerup(self):
+        self.power += 1
+        self.power_time = pygame.time.get_ticks()
 # функция стрельбы
     def shoot(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
-        bullet_2 = Bullet_rocet(self.rect.right, self.rect.top)
-        bullet_3 = Bullet_rocet(self.rect.left, self.rect.top)
-        all_sprites.add(bullet)
-        bullets.add(bullet)
-        all_sprites.add(bullet_2)
-        bullets.add(bullet_2)
-        all_sprites.add(bullet_3)
-        bullets.add(bullet_3)
+        if self.power == 1:
+            bullet = Bullet(self.rect.centerx, self.rect.top)
+            all_sprites.add(bullet)
+            bullets.add(bullet)
+        if self.power >= 2:
+            bullet = Bullet(self.rect.centerx, self.rect.top)
+            bullet_2 = Bullet_rocet(self.rect.right, self.rect.top)
+            bullet_3 = Bullet_rocet(self.rect.left, self.rect.top)
+            all_sprites.add(bullet)
+            bullets.add(bullet)
+            all_sprites.add(bullet_2)
+            bullets.add(bullet_2)
+            all_sprites.add(bullet_3)
+            bullets.add(bullet_3)
 
 # класс астероид
 class Mob(pygame.sprite.Sprite):
@@ -140,10 +158,80 @@ class Star(pygame.sprite.Sprite):
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-30, 0)
             self.speedy = 1
+
+# класс анимации взрыва
+class Exp(pygame.sprite.Sprite):
+    def __init__(self,center,size):
+        pygame.sprite.Sprite.__init__(self)
+        self.size=size
+        self.image=exp_ani[self.size][0]
+        self.rect=self.image.get_rect()
+        self.rect.center=center
+        self.frame =0
+        self.last_update=pygame.time.get_ticks()
+        self.frame_rate =50
+
+    def update(self):
+        now=pygame.time.get_ticks()
+        if now - self.last_update>self.frame_rate:
+            self.last_update=now
+            self.frame += 1
+            if self.frame==len(exp_ani[self.size]):
+                self.kill()
+            else:
+                center=self.rect.center
+                self.image=exp_ani[self.size][self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center =center
+
+#класс для значка брони/энерги 
+class Shell_icon(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image =  pygame.transform.scale(shell_img, (25, 30))
+        self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.x = 5
+        self.rect.y = 668
+
+# класс для значка здоровья
+class Hp_icon(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image =  pygame.transform.scale(hp_img, (30, 30))
+        self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.x = 465
+        self.rect.y = 668
+
+#класс для бонусов
+class Bonus(pygame.sprite.Sprite):
+    def __init__(self,center):
+        pygame.sprite.Sprite.__init__(self)
+        self.type=random.choice(['shell','hp','gun'])### 
+        self.image= bonus_immages[self.type]
+        self.image.set_colorkey(WHITE)            
+        self.rect = self.image.get_rect()  
+        self.rect.center = center
+        self.speedy = 3
+       
+    def update(self):       
+        self.rect.y += self.speedy
+        if self.rect.top > HEIGHT:
+            self.kill()
+            
+
+
+
+        
+
 # группировка спрайтов
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 stars = pygame.sprite.Group()
+bonus = pygame.sprite.Group()
+bullets_2 = pygame.sprite.Group()
+bullets_3 = pygame.sprite.Group()
 
 
