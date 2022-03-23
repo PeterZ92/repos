@@ -21,9 +21,12 @@ class Player(pygame.sprite.Sprite):
         self.hp=100 #здоровечко
         self.power = 1
         self.power_time = pygame.time.get_ticks()
+        self.last_shot = pygame.time.get_ticks()
+        self.shoot_delay = 300
 
 # функция обновления и перемещения по оси Х
     def update(self):
+
         if self.power >= 2 and pygame.time.get_ticks() - self.power_time > UP_GUN:
             self.power -= 1
             self.power_time = pygame.time.get_ticks()
@@ -34,6 +37,8 @@ class Player(pygame.sprite.Sprite):
             self.speedx = -8
         if keystate[pygame.K_RIGHT]:
             self.speedx = 8
+        if keystate[pygame.K_SPACE]:
+            self.shoot()
         self.rect.x += self.speedx
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
@@ -46,20 +51,24 @@ class Player(pygame.sprite.Sprite):
         self.power_time = pygame.time.get_ticks()
 # функция стрельбы
     def shoot(self):
-        if self.power == 1:
-            bullet = Bullet(self.rect.centerx, self.rect.top)
-            all_sprites.add(bullet)
-            bullets.add(bullet)
-        if self.power >= 2:
-            bullet = Bullet(self.rect.centerx, self.rect.top)
-            bullet_2 = Bullet_rocet(self.rect.right, self.rect.top)
-            bullet_3 = Bullet_rocet(self.rect.left, self.rect.top)
-            all_sprites.add(bullet)
-            bullets.add(bullet)
-            all_sprites.add(bullet_2)
-            bullets.add(bullet_2)
-            all_sprites.add(bullet_3)
-            bullets.add(bullet_3)
+        now = pygame.time.get_ticks()
+        if now - self.last_shot > self.shoot_delay:
+            self.last_shot = now
+
+            if self.power == 1:
+                bullet = Bullet(self.rect.centerx, self.rect.top)
+                all_sprites.add(bullet)
+                bullets.add(bullet)
+            if self.power >= 2:
+                bullet = Bullet(self.rect.centerx, self.rect.top)
+                bullet_2 = Bullet_rocet(self.rect.right, self.rect.top)
+                bullet_3 = Bullet_rocet(self.rect.left, self.rect.top)
+                all_sprites.add(bullet)
+                bullets.add(bullet)
+                all_sprites.add(bullet_2)
+                bullets.add(bullet_2)
+                all_sprites.add(bullet_3)
+                bullets.add(bullet_3)
 
 # класс астероид
 class Mob(pygame.sprite.Sprite):
@@ -220,12 +229,10 @@ class Bonus(pygame.sprite.Sprite):
         if self.rect.top > HEIGHT:
             self.kill()
             
-
-
-
-        
+       
 
 # группировка спрайтов
+
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
@@ -233,5 +240,6 @@ stars = pygame.sprite.Group()
 bonus = pygame.sprite.Group()
 bullets_2 = pygame.sprite.Group()
 bullets_3 = pygame.sprite.Group()
+
 
 

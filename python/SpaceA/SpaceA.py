@@ -3,16 +3,13 @@
 import pygame
 import random
 from os import path
-from actors import *
+from actors import*
 from setings import *
-
 
 # Создание игры и окна
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption(" КОСМИЧЕСКАЯ ОДИССЕЯ")
-clock = pygame.time.Clock()
 
 #background = pygame.image.load(path.join(img_dir, "locationP.png")).convert()
 #background_rect = background.get_rect()
@@ -30,10 +27,8 @@ all_sprites.add(s)
 h= Hp_icon()
 all_sprites.add(h)
 
-
 #список для создания астероидов
-
-for i in range(12):
+for i in range(difficults):
     newmob()
 #список для создания звёздочек
 for i in range(23):
@@ -41,21 +36,49 @@ for i in range(23):
     all_sprites.add(s)
     stars.add(s)
 # score  переменная для посчета очков
-score = 0; 
+score = 0 
 # Цикл игры
+pause= False
+game_over = True
 running = True
+
 while running:
-    # Цикл на скорости  FPS
+   
+   
+    if game_over:
+        show_go_screen()
+        game_over = False
+        all_sprites.add(player)
+        player.hp=100
+        player.shell=100
+        
+        #Запись очков в файл конец
+        score = 0
+    if pause:
+        pause= False
+        pause_screen(str(score))
+        
+ # Держим цикл на правильной скорости
     clock.tick(FPS)
     # Ввод процесса (события)
     for event in pygame.event.get():
+        #button_update()
         # проверка для закрытия окна
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            # стрельба
-            if event.key == pygame.K_SPACE:
-                player.shoot()
+            if event.key == pygame.K_ESCAPE:
+                #Запись очков в файл
+                if score>100:
+                   s_rec= open('records.txt','a')
+                   s_rec.write(str(score) + '\n')
+                   s_rec.close()
+                game_over=True
+                show_go_screen()
+            if event.key == pygame.K_p:
+                pause= True
+                pause_screen(str(score))
+                
 
     # Обновление
     all_sprites.update()
@@ -85,12 +108,18 @@ while running:
                 if hits:
                     player.hp-=50
                     newmob()
-                    if player.hp<=0:
-                       player.kill()
+                    if player.hp<=0:                       
                        player_exp=Exp(player.rect.center,'big')
                        all_sprites.add(player_exp)
-                      #player.kill()
-                       running = False
+                       #Запись очков в файл
+                       if score>100:
+                           s_rec= open('records.txt','a')
+                           s_rec.write(str(score) + '\n')
+                           s_rec.close()
+                   
+                      #завершение игрового цикла
+                       game_over = True
+        
 
     # проверка столкновения с бонусом
     hits = pygame.sprite.spritecollide(player,bonus , True)
@@ -101,10 +130,6 @@ while running:
             player.hp=100
         if hit.type == 'gun':
             player.powerup()
-
-
-
-
 
     # Рендеринг
     screen.fill(BLACK)
